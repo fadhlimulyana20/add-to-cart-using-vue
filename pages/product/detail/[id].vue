@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useToast } from 'vue-toastification';
+
 useSeoMeta({
     title: "Product Detail",
 });
@@ -8,6 +10,7 @@ definePageMeta({
 });
 
 const route = useRoute();
+const toast = useToast();
 
 interface IData {
     id?: number,
@@ -57,6 +60,7 @@ nextTick(() => {
 
 const handleAddToCart = (product_id: number) => {
     console.log(product_id)
+    toast.success('Product is added to cart successfully!!')
     AddToCart(product_id, 1, 'add')
 }
 

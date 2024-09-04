@@ -1,15 +1,20 @@
 <script setup lang="ts">
 const logoText = ref("ASM Clinic");
-const menuItems = ref([
-    {
-        label: "Product",
-        to: "/product",
-    },
-    {
-        label: "Cart",
-        to: "/cart",
-    },
-]);
+const route = useRoute();
+const menuItems = computed(() => {
+    return [
+        {
+            label: "Product",
+            to: "/product",
+            active: route.path.includes("/product"),
+        },
+        {
+            label: "Cart",
+            to: "/cart",
+            active: route.path.includes("/cart"),
+        },
+    ];
+});
 </script>
 
 <template>
@@ -19,11 +24,12 @@ const menuItems = ref([
                 <div class="flex items-center space-x-4">
                     <RouterLink
                         :to="item.to"
-                        class="text-xl font-medium hover:text-green-500"
+                        :class="[item.active ? 'font-black' : 'font-medium']"
+                        class="text-xl hover:text-green-500"
                         v-for="(item, idx) in menuItems"
                         :key="idx"
                     >
-                        {{  item.label  }}
+                        {{ item.label }}
                     </RouterLink>
                 </div>
             </div>

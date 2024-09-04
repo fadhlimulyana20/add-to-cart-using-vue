@@ -7,7 +7,7 @@ definePageMeta({
     layout: "commerce",
 });
 
-const { data } = await useFetch('/api/product')
+const { data } = await useFetch("/api/product");
 
 // const data = [
 //     {
@@ -52,15 +52,23 @@ const { data } = await useFetch('/api/product')
                 :key="idx"
             >
                 <div class="mb-5 flex space-x-2">
-                    <div class="p-2 rounded-b-full bg-yellow-600 text-white font-bold text-2xl -top-2 absolute pt-4">
+                    <div
+                        class="p-2 rounded-b-full bg-yellow-600 text-white font-bold text-2xl -top-2 absolute pt-4"
+                    >
                         01
                     </div>
                     <div class="pl-12 max-w-52">
-                        <p class="text-yellow-600 leading-none">1.4k purchased in the last 30 days</p>
+                        <p class="text-yellow-600 leading-none">
+                            1.4k purchased in the last 30 days
+                        </p>
                     </div>
                 </div>
                 <div class="mb-5">
-                    <img :src="item.main_image" :alt="item.name" class="mx-auto"/>
+                    <img
+                        :src="item.main_image"
+                        :alt="item.name"
+                        class="mx-auto"
+                    />
                 </div>
                 <div class="mb-2 min-h-32">
                     <h5 class="text-lg text-gray-200">{{ item.brand }}</h5>
@@ -90,9 +98,22 @@ const { data } = await useFetch('/api/product')
                 <div class="absolute bottom-3 left-0 w-full px-4">
                     <RouterLink :to="`/product/detail/${item.id}`">
                         <button
-                            class="bg-green-500 py-3 w-full rounded-full text-white hover:bg-green-700 font-bold text-lg"
+                            class="bg-green-500 py-3 w-full rounded-full text-white hover:bg-green-700 font-bold text-lg flex items-center space-x-2 justify-center"
                         >
-                            View Product
+                            <p>View Product</p>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-chevron-down text-yellow-300"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"
+                                />
+                            </svg>
                         </button>
                     </RouterLink>
                 </div>
