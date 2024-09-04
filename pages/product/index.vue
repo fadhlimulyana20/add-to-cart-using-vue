@@ -7,35 +7,37 @@ definePageMeta({
     layout: "commerce",
 });
 
-const data = [
-    {
-        brand: "Apple",
-        main_image: 'https://picsum.photos/200/200',
-        name: "2021 Apple Macbook Pro (14 pouches, Puce Apple M1 Pro avec CPU 10 couer et GPU 16)",
-        review_count: 5000,
-        price: 999,
-        discount: 0.2,
-        is_prime: true,
-    },
-    {
-        brand: "Apple",
-        main_image: 'https://picsum.photos/200/200',
-        name: "2021 Apple Macbook Pro (14 pouches, Puce Apple M1 Pro avec CPU 10 couer et GPU 16)",
-        review_count: 5000,
-        price: 999,
-        discount: 0.2,
-        is_prime: true,
-    },
-    {
-        brand: "Apple",
-        main_image: 'https://picsum.photos/200/200',
-        name: "2021 Apple Macbook Pro (14 pouches, Puce Apple M1 Pro avec CPU 10 couer et GPU 16)",
-        review_count: 5000,
-        price: 999,
-        discount: 0.2,
-        is_prime: true,
-    },
-];
+const { data } = await useFetch('/api/product')
+
+// const data = [
+//     {
+//         brand: "Apple",
+//         main_image: 'https://picsum.photos/200/200',
+//         name: "2021 Apple Macbook Pro (14 pouches, Puce Apple M1 Pro avec CPU 10 couer et GPU 16)",
+//         review_count: 5000,
+//         price: 999,
+//         discount: 0.2,
+//         is_prime: true,
+//     },
+//     {
+//         brand: "Apple",
+//         main_image: 'https://picsum.photos/200/200',
+//         name: "2021 Apple Macbook Pro (14 pouches, Puce Apple M1 Pro avec CPU 10 couer et GPU 16)",
+//         review_count: 5000,
+//         price: 999,
+//         discount: 0.2,
+//         is_prime: true,
+//     },
+//     {
+//         brand: "Apple",
+//         main_image: 'https://picsum.photos/200/200',
+//         name: "2021 Apple Macbook Pro (14 pouches, Puce Apple M1 Pro avec CPU 10 couer et GPU 16)",
+//         review_count: 5000,
+//         price: 999,
+//         discount: 0.2,
+//         is_prime: true,
+//     },
+// ];
 </script>
 
 <template>
@@ -46,7 +48,7 @@ const data = [
         <div class="grid md:grid-cols-3 gap-4">
             <div
                 class="h-full bg-stone-700 px-4 py-3 rounded-3xl relative"
-                v-for="(item, idx) in data"
+                v-for="(item, idx) in data?.data"
                 :key="idx"
             >
                 <div class="mb-5 flex space-x-2">
@@ -60,7 +62,7 @@ const data = [
                 <div class="mb-5">
                     <img :src="item.main_image" :alt="item.name" class="mx-auto"/>
                 </div>
-                <div class="mb-2">
+                <div class="mb-2 min-h-32">
                     <h5 class="text-lg text-gray-200">{{ item.brand }}</h5>
                     <h5 class="text-xl font-bold">
                         {{ item.name }}
@@ -71,7 +73,7 @@ const data = [
                         {{ item.review_count }} reviews
                     </p>
                 </div>
-                <div class="flex space-x-2 items-center mb-5">
+                <div class="flex space-x-2 items-center mb-20">
                     <h5 class="font-medium text-black text-xl">
                         £{{ item.price }}
                     </h5>
@@ -85,12 +87,14 @@ const data = [
                         prime
                     </h5>
                 </div>
-                <div>
-                    <button
-                        class="bg-green-500 px-2 py-3 w-full rounded-full text-white hover:bg-green-700 font-bold text-lg"
-                    >
-                        View Product
-                    </button>
+                <div class="absolute bottom-3 left-0 w-full px-4">
+                    <RouterLink :to="`/product/detail/${item.id}`">
+                        <button
+                            class="bg-green-500 py-3 w-full rounded-full text-white hover:bg-green-700 font-bold text-lg"
+                        >
+                            View Product
+                        </button>
+                    </RouterLink>
                 </div>
             </div>
         </div>
